@@ -93,15 +93,14 @@ def login():
 
     if (teacher):
         html = """
-        <h1 id='login_heading'>""" + teacher + """ Student Form</h1>
-        <div id='login_panel'>
-            <div id='login_background'>
-                <form id='login_form' action="/login" method='POST'>
-                    <input type="text" name=username placeholder='Username'></input>
-                    <input type="password" name=password placeholder='Password'></input>
-                    <input type="submit" value='Login'></input>
-                </form>
-            </div>
+        <h1 id='slip_heading'>""" + teacher + """ Student Form</h1>
+        <div id='slip_panel'>
+            <datalist id="mylist">
+                <option value="Option 1">
+                <option value="Option 2">
+                <option value="Option 3">
+            </datalist>
+            <input type="search" list="mylist">
         </div>
         """
 
