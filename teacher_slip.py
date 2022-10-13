@@ -1,5 +1,5 @@
 import ldap
-from flask import Flask, request
+from flask import Flask, request, redirect
 app = Flask(__name__)
 
 style = """
@@ -109,7 +109,7 @@ def login():
     if (displayName):
         return student_form(displayName)
     else:
-        return homepage
+        return redirect("/")
 
 @app.route('/')
 def homepage():
