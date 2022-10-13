@@ -84,30 +84,28 @@ def check_credentials(username, password):
     result = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
     return result.decode('utf-8')
 
-def student_form(teacher):
-    html = """
-    <h1 id='login_heading'>""" + teacher + """ Student Form</h1>
-    <div id='login_panel'>
-        <div id='login_background'>
-            <form id='login_form' action="/login" method='POST'>
-                <input type="text" name=username placeholder='Username'></input>
-                <input type="password" name=password placeholder='Password'></input>
-                <input type="submit" value='Login'></input>
-            </form>
-        </div>
-    </div>
-    """
-    return style + html
-
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
     password = request.form['password']
 
-    displayName = check_credentials(username, password)
+    teacher = check_credentials(username, password)
 
-    if (displayName):
-        return student_form(displayName)
+    if (teacher):
+        html = """
+        <h1 id='login_heading'>""" + teacher + """ Student Form</h1>
+        <div id='login_panel'>
+            <div id='login_background'>
+                <form id='login_form' action="/login" method='POST'>
+                    <input type="text" name=username placeholder='Username'></input>
+                    <input type="password" name=password placeholder='Password'></input>
+                    <input type="submit" value='Login'></input>
+                </form>
+            </div>
+        </div>
+        """
+
+        return style + html
     else:
         return redirect("/")
 
