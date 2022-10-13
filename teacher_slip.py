@@ -2,27 +2,6 @@ import ldap
 from flask import Flask, request
 app = Flask(__name__)
 
-def check_credentials(username, password):
-    ldap_server = "ldap://e5070s01sv001.indigo.schools.internal"
-    ldap_user = username + "@" + "indigo.schools.internal"
-    ldap_password = password
-
-    try:
-        ldap_client = ldap.initialize(ldap_server)
-        ldap_client.simple_bind_s(ldap_user, ldap_password)
-    except ldap.INVALID_CREDENTIALS:
-        ldap_client.unbind()
-        return False
-    except ldap.SERVER_DOWN:
-        return False
-
-    base_dn = 'OU=School Users,DC=indigo,DC=schools,DC=internal'
-    ldap_filter = "(sAMAccountName=" + username + ")"
-    attributes = ['displayName']
-    
-    result = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
-    return result
-
 style = """
     <style>
         body * {
@@ -84,6 +63,42 @@ style = """
         }
     </style>"""
 
+def check_credentials(username, password):
+    ldap_server = "ldap://e5070s01sv001.indigo.schools.internal"
+    ldap_user = username + "@" + "indigo.schools.internal"
+    ldap_password = password
+
+    try:
+        ldap_client = ldap.initialize(ldap_server)
+        ldap_client.simple_bind_s(ldap_user, ldap_password)
+    except ldap.INVALID_CREDENTIALS:
+        ldap_client.unbind()
+        return False
+    except ldap.SERVER_DOWN:
+        return False
+
+    base_dn = 'OU=School Users,DC=indigo,DC=schools,DC=internal'
+    ldap_filter = "(sAMAccountName=" + username + ")"
+    attributes = ['displayName']
+    
+    result = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
+    return result.decode('utf-8')
+
+def student_form(teacher):
+    html = """
+    <h1 id='login_heading'>""" + teacher + """ Student Form</h1>
+    <div id='login_panel'>
+        <div id='login_background'>
+            <form id='login_form' action="/login" method='POST'>
+                <input type="text" name=username placeholder='Username'></input>
+                <input type="password" name=password placeholder='Password'></input>
+                <input type="submit" value='Login'></input>
+            </form>
+        </div>
+    </div>
+    """
+    return style + html
+
 @app.route('/login', methods=['POST'])
 def login():
     username = request.form['username']
@@ -92,9 +107,9 @@ def login():
     displayName = check_credentials(username, password)
 
     if (displayName):
-        return displayName
+        return student_form(displayName)
     else:
-        return "false credentials"
+        return homepage
 
 @app.route('/')
 def homepage():
