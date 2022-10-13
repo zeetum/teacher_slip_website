@@ -95,12 +95,32 @@ def login():
         html = """
         <h1 id='slip_heading'>""" + teacher + """ Student Form</h1>
         <div id='slip_panel'>
-            <datalist id="mylist">
-                <option value="Option 1">
-                <option value="Option 2">
-                <option value="Option 3">
-            </datalist>
-            <input type="search" list="mylist">
+            <div id=location_div>
+                <datalist id="location_input">
+                    <option value="Classroom">
+                    <option value="Assembly">
+                    <option value="Toilets">
+                    <option value="Under Cover Area">
+                    <option value="Green Patch">
+                    <option value="Verandah">
+                    <option value="Basketball Court">
+                    <option value="Oval">
+                </datalist>
+                <input name=location type="search" list="location_input">
+            </div>
+            <div id=time_div>
+                <datalist id="time_input">
+                    <option value="8:50 - 10:20">
+                    <option value="10:40 - 11:40">
+                    <option value="11:40 - 12:40">
+                    <option value="1:20 - 3:00">
+                    <option value="Before School">
+                    <option value="Recess">
+                    <option value="Lunch">
+                    <option value="After School">
+                </datalist>
+                <input name=time type="search" list="time_input">
+            </div>
         </div>
         """
 
