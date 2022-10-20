@@ -7,6 +7,22 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Alternate colours for Behavior columns
+            let alternate_column = true
+            let behavior_details = document.getElementById("behavior_details")
+            for (let behaviors of document.getElementsByClassName("sub_behavior_details")) {
+                alternate_column = !alternate_column
+                let flipflop = alternate_column
+                for (let item of behaviors.getElementsByClassName("behavior_option")) {
+                    if (flipflop == true) {
+                        item.style.backgroundColor = '#EBEBEB'
+                    } else {
+                        item.style.backgroundColor = '#F8F8FF'
+                    }
+                    flipflop = !flipflop
+                }
+            }
+            // Click on label toggles checkbox
             for (let input of document.getElementsByTagName("input")) {
                 if (input.type === "checkbox") {
                     input.parentElement.parentElement.addEventListener("click",function() {
@@ -208,12 +224,6 @@
             width: 25px;
             align-items: center;
             float: left;
-        }
-        #behavior_details .sub_behavior_details > :nth-child(odd) {
-            background-color: #EBEBEB;
-        }
-        #behavior_details .sub_behavior_details > :nth-child(even) {
-            background-color: #F8F8FF;
         }
     </style>
 
