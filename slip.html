@@ -9,17 +9,30 @@
         html * {
             font-family: Arial !important;
         }
-        
-        #incident_details {
-            height: 25px;
-            width: 1200px;
+
+        #teacher_header {
+            height: 50px;
+            width: 900px;
+            margin: auto;
+            background-color: #EBEBEB;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        #teacher_header span {
+            line-height: 50px;
+            padding-left: 5px;
+        }
+
+        #minor_slip_form {
+            width: 900px;
+            height: 10000px;
             margin: auto;
         }
+        
         #incident_details div {
             height: 25px;
-            width: 250px;
+            width: 300px;
             float: left;
-            align-items: center;
             display: flex;
         }
         #incident_details div .label_div {
@@ -32,7 +45,7 @@
         }
         #incident_details div .input_div {
             height: 100%;
-            width: 150px;
+            width: 200px;
             align-items: center;
             float: left;
             background-color: #F8F8FF;
@@ -41,18 +54,74 @@
             width: 100%;
         }
 
-        .location_option {
+        #location_details {
+            width: 600px;
             float: left;
         }
-
-        .location_option label {
-            float:right;
+        #location_details .heading {
+            height: 25px;
+            width: 600px;
+            background-color: #EBEBEB;
+        }
+        #location_details .heading span {
+            padding-left: 5px;
+        }
+        #location_details div {
+            height: 25px;
+            width: 200px;
+            float: left;
+            display: flex;
+        }
+        #location_details div .label_div {
+            height: 100%;
+            width: 175px;
+            padding-left: 5px;
+            align-items: center;
+            float: left;
+            background-color: #EBEBEB;
+        }
+        #location_details div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            background-color: #F8F8FF;
         }
 
-        .location_option input {
-            margin: 5px 0px;
-            float:right;
+        #time_details {
+            width: 300px;
+            float: left;
         }
+        #time_details .heading {
+            height: 25px;
+            width: 300px;
+            background-color: #EBEBEB;
+        }
+        #time_details .heading span {
+            padding-left: 5px;
+        }
+        #time_details div {
+            height: 25px;
+            width: 300px;
+            float: left;
+            display: flex;
+        }
+        #time_details div .label_div {
+            height: 100%;
+            width: 275px;
+            padding-left: 5px;
+            align-items: center;
+            float: left;
+            background-color: #EBEBEB;
+        }
+        #time_details div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            background-color: #F8F8FF;
+        }
+
     </style>
 
     <datalist id="students_list">
@@ -87,7 +156,7 @@
 
     <body>
         <div id=teacher_header>
-            <h1>Tim Blackburn</h1>
+            <span>Tim Blackburn Student Minor Behavior Slip</span>
         </div>
         
         <form id="minor_slip_form" action="/submit_form">
@@ -119,107 +188,204 @@
             </div>
 
             <div id=location_details>
-                <div class="heading">Location</div>
+                <div class="heading"><span>Location</span></div>
 
                 <div class="location_option">
-                    <label for="classroom">Classroom</label>
-                    <input type="checkbox" name="classroom">
+                    <div class="input_div">
+                        <input type="checkbox" name="classroom">
+                    </div>
+                    <div class="label_div">
+                        <label for="classroom">Classroom</label>
+                    </div>
+
                 </div>
                 <div class="location_option">
-                    <label for="music">Music</label>
-                    <input type="checkbox" name="music">
+                    <div class="input_div">
+                        <input type="checkbox" name="music">
+                    </div>
+                    <div class="label_div">
+                        <label for="music">Music</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="languages">Languages</label>
-                    <input type="checkbox" name="languages">
+                    <div class="input_div">
+                        <input type="checkbox" name="languages">
+                    </div>
+                    <div class="label_div">
+                        <label for="languages">Languages</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="art">Art</label>
-                    <input type="checkbox" name="art">
+                    <div class="input_div">
+                        <input type="checkbox" name="art">
+                    </div>
+                    <div class="label_div">
+                        <label for="art">Art</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="phys_ed">Phys Ed</label>
-                    <input type="checkbox" name="phys_ed">
+                    <div class="input_div">
+                        <input type="checkbox" name="phys_ed">
+                    </div>
+                    <div class="label_div">
+                        <label for="phys_ed">Phys Ed</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="science">Science</label>
-                    <input type="checkbox" name="science">
+                    <div class="input_div">
+                        <input type="checkbox" name="science">
+                    </div>
+                    <div class="label_div">
+                        <label for="science">Science</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="library">Library</label>
-                    <input type="checkbox" name="library">
+                    <div class="input_div">
+                        <input type="checkbox" name="library">
+                    </div>
+                    <div class="label_div">
+                        <label for="library">Library</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="fitness">Daily Fitness</label>
-                    <input type="checkbox" name="fitness">
+                    <div class="input_div">
+                        <input type="checkbox" name="fitness">
+                    </div>
+                    <div class="label_div">
+                        <label for="fitness">Daily Fitness</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="assembly">Assembly</label>
-                    <input type="checkbox" name="assembly">
+                    <div class="input_div">
+                        <input type="checkbox" name="assembly">
+                    </div>
+                    <div class="label_div">
+                        <label for="assembly">Assembly</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="toilets">Toilets</label>
-                    <input type="checkbox" name="toilets">
+                    <div class="input_div">
+                        <input type="checkbox" name="toilets">
+                    </div>
+                    <div class="label_div">
+                        <label for="toilets">Toilets</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="gazebo">Gazebo</label>
-                    <input type="checkbox" name="gazebo">
+                    <div class="input_div">
+                        <input type="checkbox" name="gazebo">
+                    </div>
+                    <div class="label_div">
+                        <label for="gazebo">Gazebo</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="under_cover">Under Cover</label>
-                    <input type="checkbox" name="under_cover">
+                    <div class="input_div">
+                        <input type="checkbox" name="under_cover">
+                    </div>
+                    <div class="label_div">
+                        <label for="under_cover">Under Cover</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="green_patch">Green Patch</label>
-                    <input type="checkbox" name="green_patch">
+                    <div class="input_div">
+                        <input type="checkbox" name="green_patch">
+                    </div>
+                    <div class="label_div">
+                        <label for="green_patch">Green Patch</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="verandah">Verandah</label>
-                    <input type="checkbox" name="verandah">
+                    <div class="input_div">
+                        <input type="checkbox" name="verandah">
+                    </div>
+                    <div class="label_div">
+                        <label for="verandah">Verandah</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="basketball">Basketball</label>
-                    <input type="checkbox" name="basketball">
+                    <div class="input_div">
+                        <input type="checkbox" name="basketball">
+                    </div>
+                    <div class="label_div">
+                        <label for="basketball">Basketball</label>
+                    </div>
                 </div>
                 <div class="location_option">
-                    <label for="oval">Oval</label>
-                    <input type="checkbox" name="oval">
+                    <div class="input_div">
+                        <input type="checkbox" name="oval">
+                    </div>
+                    <div class="label_div">
+                        <label for="oval">Oval</label>
+                    </div>
                 </div>
             </div>
 
             <div id=time_details>
                 <div class="heading">Time</div>
                 <div class="time_option">
-                    <label for="time1">Before School</label>
-                    <input type="checkbox" name="time1">
+                    <div class="input_div">
+                        <input type="checkbox" name="time1">
+                    </div>
+                    <div class="label_div">
+                        <label for="time1">Before School</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time2">8:50 - 10:20</label>
-                    <input type="checkbox" name="time2">
+                    <div class="input_div">
+                        <input type="checkbox" name="time2">
+                    </div>
+                    <div class="label_div">
+                        <label for="time2">8:50 - 10:20</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time3">Recess</label>
-                    <input type="checkbox" name="time3">
+                    <div class="input_div">
+                        <input type="checkbox" name="time3">
+                    </div>
+                    <div class="label_div">
+                        <label for="time3">Recess</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time4">10:40 - 11:40</label>
-                    <input type="checkbox" name="time4">
+                    <div class="input_div">
+                        <input type="checkbox" name="time4">
+                    </div>
+                    <div class="label_div">
+                        <label for="time4">10:40 - 11:40</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time5">11:40 - 12:40</label>
-                    <input type="checkbox" name="time5">
+                    <div class="input_div">
+                        <input type="checkbox" name="time5">
+                    </div>
+                    <div class="label_div">
+                        <label for="time5">11:40 - 12:40</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time6">Lunch</label>
-                    <input type="checkbox" name="time6">
+                    <div class="input_div">
+                        <input type="checkbox" name="time6">
+                    </div>
+                    <div class="label_div">
+                        <label for="time6">Lunch</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time7">1:20 - 3:00</label>
-                    <input type="checkbox" name="time7">
+                    <div class="input_div">
+                        <input type="checkbox" name="time7">
+                    </div>
+                    <div class="label_div">
+                        <label for="time7">1:20 - 3:00</label>
+                    </div>
                 </div>
                 <div class="time_option">
-                    <label for="time8">After School</label>
-                    <input type="checkbox" name="time8">
+                    <div class="input_div">
+                        <input type="checkbox" name="time8">
+                    </div>
+                    <div class="label_div">
+                        <label for="time8">After School</label>
+                    </div>
                 </div>
             </div>
 
