@@ -6,21 +6,59 @@
     </head>
 
     <style>
-        .location_checkbox {
+        html * {
+            font-family: Arial !important;
+        }
+        
+        #incident_details {
+            height: 25px;
+            width: 1200px;
+            margin: auto;
+        }
+        #incident_details div {
+            height: 25px;
+            width: 250px;
+            float: left;
+            align-items: center;
+            display: flex;
+        }
+        #incident_details div .label_div {
+            height: 100%;
+            width: 100px;
+            padding-left: 5px;
+            align-items: center;
+            float: left;
+            background-color: #EBEBEB;
+        }
+        #incident_details div .input_div {
+            height: 100%;
+            width: 150px;
+            align-items: center;
+            float: left;
+            background-color: #F8F8FF;
+        }
+        #incident_details div .label_div input {
+            width: 10px;
+        }
+        #incident_details div .input_div input {
+            width: 100%;
+        }
+
+        .location_option {
             float: left;
         }
 
-        .location_checkbox label {
+        .location_option label {
             float:right;
         }
 
-        .location_checkbox input {
+        .location_option input {
             margin: 5px 0px;
             float:right;
         }
     </style>
 
-    <datalist id="student_ids">
+    <datalist id="students_list">
         <option value="annie">
         <option value="arnold">
         <option value="freddy">
@@ -31,7 +69,7 @@
         <option value="someone.in.particular">
     </datalist>
 
-    <datalist id="room_ids">
+    <datalist id="rooms_list">
         <option value="Room 1">
         <option value="Room 2">
         <option value="Room 3">
@@ -57,122 +95,134 @@
         
         <form id="minor_slip_form" action="/submit_form">
             <div id=incident_details>
-                <div id=student>
-                    <label for="student_id">Student</label>
-                    <input type="search" name="student_id" list="student_ids">
+                <div>
+                    <div class="label_div">
+                        <label for="student">Student</label>
+                    </div>
+                    <div class="input_div">
+                        <input type="search" name="student" list="students_list">
+                    </div>
                 </div>
-                <div id=room>
-                    <label for="room_id">Room</label>
-                    <input type="search" name="room_id" list="room_ids">
+                <div>
+                    <div class="label_div">
+                        <label for="room">Room</label>
+                    </div>
+                    <div class="input_div">
+                        <input type="search" name="room" list="rooms_list">
+                    </div>
                 </div>
-                <div id=date>
-                    <label for="date_id">Student</label>
-                    <input type="text" name="date_id" placeholder="currentdate">
+                <div>
+                    <div class="label_div">
+                        <label for="date">Date</label>
+                    </div>
+                    <div class="input_div">
+                        <input type="text" name="date" placeholder="currentdate">
+                    </div>
                 </div>
             </div>
 
             <div id=location_details>
                 <div class="heading">Location</div>
 
-                <div class="location_checkbox">
-                    <label for="classroom_checkbox">Classroom</label>
-                    <input type="checkbox" name="classroom_checkbox">
+                <div class="location_option">
+                    <label for="classroom">Classroom</label>
+                    <input type="checkbox" name="classroom">
                 </div>
-                <div class="location_checkbox">
-                    <label for="music_checkbox">Music</label>
-                    <input type="checkbox" name="music_checkbox">
+                <div class="location_option">
+                    <label for="music">Music</label>
+                    <input type="checkbox" name="music">
                 </div>
-                <div class="location_checkbox">
-                    <label for="languages_checkbox">Languages</label>
-                    <input type="checkbox" name="languages_checkbox">
+                <div class="location_option">
+                    <label for="languages">Languages</label>
+                    <input type="checkbox" name="languages">
                 </div>
-                <div class="location_checkbox">
-                    <label for="art_checkbox">Art</label>
-                    <input type="checkbox" name="art_checkbox">
+                <div class="location_option">
+                    <label for="art">Art</label>
+                    <input type="checkbox" name="art">
                 </div>
-                <div class="location_checkbox">
-                    <label for="phys_ed_checkbox">Phys Ed</label>
-                    <input type="checkbox" name="phys_ed_checkbox">
+                <div class="location_option">
+                    <label for="phys_ed">Phys Ed</label>
+                    <input type="checkbox" name="phys_ed">
                 </div>
-                <div class="location_checkbox">
-                    <label for="science_checkbox">Science</label>
-                    <input type="checkbox" name="science_checkbox">
+                <div class="location_option">
+                    <label for="science">Science</label>
+                    <input type="checkbox" name="science">
                 </div>
-                <div class="location_checkbox">
-                    <label for="library_checkbox">Library</label>
-                    <input type="checkbox" name="library_checkbox">
+                <div class="location_option">
+                    <label for="library">Library</label>
+                    <input type="checkbox" name="library">
                 </div>
-                <div class="location_checkbox">
-                    <label for="fitness_checkbox">Daily Fitness</label>
-                    <input type="checkbox" name="fitness_checkbox">
+                <div class="location_option">
+                    <label for="fitness">Daily Fitness</label>
+                    <input type="checkbox" name="fitness">
                 </div>
-                <div class="location_checkbox">
-                    <label for="assembly_checkbox">Assembly</label>
-                    <input type="checkbox" name="assembly_checkbox">
+                <div class="location_option">
+                    <label for="assembly">Assembly</label>
+                    <input type="checkbox" name="assembly">
                 </div>
-                <div class="location_checkbox">
-                    <label for="toilets_checkbox">Toilets</label>
-                    <input type="checkbox" name="toilets_checkbox">
+                <div class="location_option">
+                    <label for="toilets">Toilets</label>
+                    <input type="checkbox" name="toilets">
                 </div>
-                <div class="location_checkbox">
-                    <label for="gazebo_checkbox">Gazebo</label>
-                    <input type="checkbox" name="gazebo_checkbox">
+                <div class="location_option">
+                    <label for="gazebo">Gazebo</label>
+                    <input type="checkbox" name="gazebo">
                 </div>
-                <div class="location_checkbox">
-                    <label for="under_cover_checkbox">Under Cover</label>
-                    <input type="checkbox" name="under_cover_checkbox">
+                <div class="location_option">
+                    <label for="under_cover">Under Cover</label>
+                    <input type="checkbox" name="under_cover">
                 </div>
-                <div class="location_checkbox">
-                    <label for="green_patch_checkbox">Green Patch</label>
-                    <input type="checkbox" name="green_patch_checkbox">
+                <div class="location_option">
+                    <label for="green_patch">Green Patch</label>
+                    <input type="checkbox" name="green_patch">
                 </div>
-                <div class="location_checkbox">
-                    <label for="verandah_checkbox">Verandah</label>
-                    <input type="checkbox" name="verandah_checkbox">
+                <div class="location_option">
+                    <label for="verandah">Verandah</label>
+                    <input type="checkbox" name="verandah">
                 </div>
-                <div class="location_checkbox">
-                    <label for="basketball_checkbox">Basketball</label>
-                    <input type="checkbox" name="basketball_checkbox">
+                <div class="location_option">
+                    <label for="basketball">Basketball</label>
+                    <input type="checkbox" name="basketball">
                 </div>
-                <div class="location_checkbox">
-                    <label for="oval_checkbox">Oval</label>
-                    <input type="checkbox" name="oval_checkbox">
+                <div class="location_option">
+                    <label for="oval">Oval</label>
+                    <input type="checkbox" name="oval">
                 </div>
             </div>
 
             <div id=time_details>
                 <div class="heading">Time</div>
-                <div class="time_checkbox">
-                    <label for="time1_checkbox">Before School</label>
-                    <input type="checkbox" name="time1_checkbox">
+                <div class="time_option">
+                    <label for="time1">Before School</label>
+                    <input type="checkbox" name="time1">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time2_checkbox">8:50 - 10:20</label>
-                    <input type="checkbox" name="time2_checkbox">
+                <div class="time_option">
+                    <label for="time2">8:50 - 10:20</label>
+                    <input type="checkbox" name="time2">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time3_checkbox">Recess</label>
-                    <input type="checkbox" name="time3_checkbox">
+                <div class="time_option">
+                    <label for="time3">Recess</label>
+                    <input type="checkbox" name="time3">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time4_checkbox">10:40 - 11:40</label>
-                    <input type="checkbox" name="time4_checkbox">
+                <div class="time_option">
+                    <label for="time4">10:40 - 11:40</label>
+                    <input type="checkbox" name="time4">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time5_checkbox">11:40 - 12:40</label>
-                    <input type="checkbox" name="time5_checkbox">
+                <div class="time_option">
+                    <label for="time5">11:40 - 12:40</label>
+                    <input type="checkbox" name="time5">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time6_checkbox">Lunch</label>
-                    <input type="checkbox" name="time6_checkbox">
+                <div class="time_option">
+                    <label for="time6">Lunch</label>
+                    <input type="checkbox" name="time6">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time7_checkbox">1:20 - 3:00</label>
-                    <input type="checkbox" name="time7_checkbox">
+                <div class="time_option">
+                    <label for="time7">1:20 - 3:00</label>
+                    <input type="checkbox" name="time7">
                 </div>
-                <div class="time_checkbox">
-                    <label for="time8_checkbox">After School</label>
-                    <input type="checkbox" name="time8_checkbox">
+                <div class="time_option">
+                    <label for="time8">After School</label>
+                    <input type="checkbox" name="time8">
                 </div>
             </div>
 
@@ -180,82 +230,82 @@
                 <div class="heading">Behavior</div>
                 <div id="be_responsible">
                     <div class="heading">Be Responsible</div>
-                    <div class="behavior_checkbox">
-                        <label for="unprepared_checkbox">Unprepared</label>
-                        <input type="checkbox" name="unprepared_checkbox">
+                    <div class="behavior_option">
+                        <label for="unprepared">Unprepared</label>
+                        <input type="checkbox" name="unprepared">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="poor_language_checkbox">Poor Language</label>
-                        <input type="checkbox" name="poor_language_checkbox">
+                    <div class="behavior_option">
+                        <label for="poor_language">Poor Language</label>
+                        <input type="checkbox" name="poor_language">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="late_checkbox">Late to Class</label>
-                        <input type="checkbox" name="late_checkbox">
+                    <div class="behavior_option">
+                        <label for="late">Late to Class</label>
+                        <input type="checkbox" name="late">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="work_avoidance_checkbox">Work Avoidance</label>
-                        <input type="checkbox" name="work_avoidance_checkbox">
+                    <div class="behavior_option">
+                        <label for="work_avoidance">Work Avoidance</label>
+                        <input type="checkbox" name="work_avoidance">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="off_task_checkbox">Off Task</label>
-                        <input type="checkbox" name="off_task_checkbox">
+                    <div class="behavior_option">
+                        <label for="off_task">Off Task</label>
+                        <input type="checkbox" name="off_task">
                     </div>
                 </div>
                 <div id="be_respectful">
                     <div class="heading">Be Respectful</div>
-                    <div class="behavior_checkbox">
-                        <label for="instructions_checkbox">Instructions</label>
-                        <input type="checkbox" name="instructions_checkbox">
+                    <div class="behavior_option">
+                        <label for="instructions">Instructions</label>
+                        <input type="checkbox" name="instructions">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="disrupting_class_checkbox">Disrupting Class</label>
-                        <input type="checkbox" name="disrupting_class_checkbox">
+                    <div class="behavior_option">
+                        <label for="disrupting_class">Disrupting Class</label>
+                        <input type="checkbox" name="disrupting_class">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="calling_out_checkbox">Calling Out</label>
-                        <input type="checkbox" name="calling_out_checkbox">
+                    <div class="behavior_option">
+                        <label for="calling_out">Calling Out</label>
+                        <input type="checkbox" name="calling_out">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="talking_back_checkbox">Talking Back</label>
-                        <input type="checkbox" name="talking_back_checkbox">
+                    <div class="behavior_option">
+                        <label for="talking_back">Talking Back</label>
+                        <input type="checkbox" name="talking_back">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="property_misuse_checkbox">Property Misuse</label>
-                        <input type="checkbox" name="property_misuse_checkbox">
+                    <div class="behavior_option">
+                        <label for="property_misuse">Property Misuse</label>
+                        <input type="checkbox" name="property_misuse">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="tech_misuse_checkbox">Tech Misuse</label>
-                        <input type="checkbox" name="tech_misuse_checkbox">
+                    <div class="behavior_option">
+                        <label for="tech_misuse">Tech Misuse</label>
+                        <input type="checkbox" name="tech_misuse">
                     </div>
                 </div>
                 <div id="be_caring">
                     <div class="heading">Be Caring</div>
-                    <div class="behavior_checkbox">
-                        <label for="poor_behavior_checkbox">Poor Behavior</label>
-                        <input type="checkbox" name="poor_behavior_checkbox">
+                    <div class="behavior_option">
+                        <label for="poor_behavior_option">Poor Behavior</label>
+                        <input type="checkbox" name="poor_behavior_option">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="physical_contact_checkbox">Physical Contact</label>
-                        <input type="checkbox" name="physical_contact_checkbox">
+                    <div class="behavior_option">
+                        <label for="physical_contact">Physical Contact</label>
+                        <input type="checkbox" name="physical_contact">
                     </div>
                 </div>
                 <div id="be_your_best">
                     <div class="heading">Be Your Best</div>
-                    <div class="behavior_checkbox">
-                        <label for="dress_code_checkbox">Dress Code</label>
-                        <input type="checkbox" name="dress_code_checkbox">
+                    <div class="behavior_option">
+                        <label for="dress_code">Dress Code</label>
+                        <input type="checkbox" name="dress_code">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="inattentive_checkbox">Inattentive</label>
-                        <input type="checkbox" name="inattentive_checkbox">
+                    <div class="behavior_option">
+                        <label for="inattentive">Inattentive</label>
+                        <input type="checkbox" name="inattentive">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="lacks_application_checkbox">Lacks Application</label>
-                        <input type="checkbox" name="lacks_application_checkbox">
+                    <div class="behavior_option">
+                        <label for="lacks_application">Lacks Application</label>
+                        <input type="checkbox" name="lacks_application">
                     </div>
-                    <div class="behavior_checkbox">
-                        <label for="dishonesty_checkbox">Dishonesty</label>
-                        <input type="checkbox" name="dishonesty_checkbox">
+                    <div class="behavior_option">
+                        <label for="dishonesty">Dishonesty</label>
+                        <input type="checkbox" name="dishonesty">
                     </div>
                 </div>
             </div>
