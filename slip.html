@@ -7,11 +7,13 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            for (let option_div of document.getElementsByClassName("location_option")) {
-                    option_div.addEventListener("click",function() {
-                        let checkbox = option_div.getElementsByTagName('input')[0];
+            for (let input of document.getElementsByTagName("input")) {
+                if (input.type === "checkbox") {
+                    input.parentElement.parentElement.addEventListener("click",function() {
+                        let checkbox = input.parentElement.getElementsByTagName('input')[0];
                         checkbox.checked = !checkbox.checked
-                });
+                    });
+                }
             }
         });
     </script>
