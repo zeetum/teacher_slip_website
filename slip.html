@@ -25,7 +25,8 @@
             // Click on label toggles checkbox
             for (let input of document.getElementsByTagName("input")) {
                 if (input.type === "checkbox") {
-                    input.parentElement.parentElement.addEventListener("click",function() {
+                    input.parentElement.parentElement.addEventListener("click",function( {target} ) {
+                        if(target.matches("input[type=checkbox]")) { return }
                         let checkbox = input.parentElement.getElementsByTagName('input')[0];
                         checkbox.checked = !checkbox.checked
                     });
