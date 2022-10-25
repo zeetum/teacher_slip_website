@@ -4,22 +4,20 @@
         <title>Teacher Minor Behavior Slip</title>
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Alternate colours for Behavior columns
-            let alternate_column = true
-            let behavior_details = document.getElementById("behavior_details")
+            let column = true
             for (let behaviors of document.getElementsByClassName("sub_behavior_details")) {
-                alternate_column = !alternate_column
-                let flipflop = alternate_column
+                column = !column
+                let row = column
                 for (let item of behaviors.getElementsByClassName("behavior_option")) {
-                    if (flipflop == true) {
+                    if (row == true) {
                         item.style.backgroundColor = '#EBEBEB'
                     } else {
                         item.style.backgroundColor = '#F8F8FF'
                     }
-                    flipflop = !flipflop
+                    row = !row
                 }
             }
             // Click on label toggles checkbox
@@ -187,15 +185,20 @@
             border-right: solid;
             overflow: hidden;
         }
+        #behavior_details .heading {
+            height: 15px;
+            width: 900px;
+            padding: 5px;
+            background-color: #F8F8FF;
+        }
+        #behavior_details .heading span {
+            padding-left: 15px;
+        }
         #behavior_details > .heading {
             height: 15px;
             width: 900px;
             padding: 5px;
             background-color: #EBEBEB;
-            border-bottom: solid;
-        }
-        #behavior_details > .heading span {
-            padding-left: 15px;
         }
         .sub_behavior_details {
             width: 223px;
