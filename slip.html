@@ -459,11 +459,14 @@
         }
 
         #submit_padding {
-            height: 100px;
+            width: 895px;
+            height: 20px;
+            float: left;
         }
         input[type=submit] {
-            height: 25px;
-            width: 900px
+            height: 50px;
+            width: 900px;
+            font-size: 30px;
         }
     </style>
 
@@ -1104,29 +1107,29 @@
                     </div>
                 </div>
             </div>
-                <div id="step_4">
-                    <div class="heading">Step 4 - 3-5 slips ine one week means admin action required</div>
-                    <div>
-                        <div class="input_div">
-                            <input type="checkbox" name="major_form_required">
-                        </div>
-                        <div class="label_div">
-                            <label for="major_form_required">Major Behavior Required</label>
-                        </div>
+            <div id="step_4">
+                <div class="heading">Step 4 - 3-5 slips ine one week means admin action required</div>
+                <div>
+                    <div class="input_div">
+                        <input type="checkbox" name="major_form_required">
                     </div>
-                    <div>
-                        <div class="input_div">
-                            <input type="checkbox" name="admin_action_required">
-                        </div>
-                        <div class="label_div">
-                            <label for="admin_action_required">Admin Action Required</label>
-                        </div>
+                    <div class="label_div">
+                        <label for="major_form_required">Major Behavior Required</label>
                     </div>
                 </div>
+                <div>
+                    <div class="input_div">
+                        <input type="checkbox" name="admin_action_required">
+                    </div>
+                    <div class="label_div">
+                        <label for="admin_action_required">Admin Action Required</label>
+                    </div>
+                </div>
+            </div>
 
+            <div id="submit_padding"></div>
             
-            
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit to Admin">
         </form>
     </body>
 </html>
