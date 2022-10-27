@@ -320,6 +320,63 @@
             display: flex;
         }
 
+        #behavior_concequences {
+            width: 600px;
+            float: left;
+            box-sizing: border-box;
+            border-left: solid;
+            border-bottom: solid;
+            border-right: solid;
+            overflow: hidden;
+        }
+        #behavior_concequences .heading {
+            height: 15px;
+            width: 295px;
+            padding: 5px;
+            background-color: #F8F8FF;
+        }
+        #behavior_concequences .heading span {
+            padding-left: 15px;
+        }
+        #behavior_concequences > .heading {
+            height: 15px;
+            width: 600px;
+            padding: 5px;
+            background-color: #EBEBEB;
+            border-bottom: solid;
+        }
+        #step_3_classroom {
+            width: 300px;
+            float: left;
+        }
+
+        #step_3_classroom > :nth-child(odd) {
+            background-color: #EBEBEB;
+        }
+        #step_3_classroom > :nth-child(even) {
+            background-color: #F8F8FF;
+        }
+        #step_3_classroom > div {
+            height: 25px;
+            width: 300px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_3_classroom > div .label_div {
+            height: 100%;
+            width: 275px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_3_classroom > div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
     </style>
 
     <datalist id="students_list">
@@ -853,19 +910,80 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id=behavior_concequences>
+                <div class="heading">Behavior Consequences</div>
                 <div id="step_3_classroom">
                     <div class="heading">Step 3 - Classroom</div>
-
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="explicit">
+                        </div>
+                        <div class="label_div">
+                            <label for="explicit">Explicit</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="isolation">
+                        </div>
+                        <div class="label_div">
+                            <label for="isolation">Isolation</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="loss_of_privilege">
+                        </div>
+                        <div class="label_div">
+                            <label for="loss_of_privilege">Loss of Privilege</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="partner_referral">
+                        </div>
+                        <div class="label_div">
+                            <label for="partner_referral">Partner Room Referral</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="parent_notification">
+                        </div>
+                        <div class="label_div">
+                            <label for="parent_notification">Parent Notification</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="parent_meeting">
+                        </div>
+                        <div class="label_div">
+                            <label for="parent_meeting">Parent Meeting</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="informal_contract">
+                        </div>
+                        <div class="label_div">
+                            <label for="informal_contract">Informal Contract</label>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div id="step_3_playground">
+                    <div class="heading">Step 3 - Playground</div>
 
                 </div>
+            </div>
                 <div id="step_4">
                     <div class="heading">Step 4</div>
 
                 </div>
 
-            </div>
+            
             
             <input type="submit" value="Submit">
         </form>
