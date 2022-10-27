@@ -412,10 +412,58 @@
             float: left;
             display: flex;
         }
-        #step_3_playground > .heading {
+        #step_4 > .heading {
             height: 15px;
             width: 290px;
             padding: 5px;
+        }
+        
+        #step_4 {
+            width: 895px;
+            float: left;
+            border-left: solid;
+            border-bottom: solid;
+            border-right: solid;
+        }
+        #step_4 > :nth-child(odd) {
+            background-color: #EBEBEB;
+        }
+        #step_4 > :nth-child(even) {
+            background-color: #F8F8FF;
+        }
+        #step_4 > div {
+            height: 25px;
+            width: 895px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_4 > div .label_div {
+            height: 100%;
+            width: 875px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_4 > div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_4 > .heading {
+            height: 15px;
+            width: 885px;
+            padding: 5px;
+        }
+
+        #submit_padding {
+            height: 100px;
+        }
+        input[type=submit] {
+            height: 25px;
+            width: 900px
         }
     </style>
 
@@ -1057,8 +1105,23 @@
                 </div>
             </div>
                 <div id="step_4">
-                    <div class="heading">Step 4</div>
-
+                    <div class="heading">Step 4 - 3-5 slips ine one week means admin action required</div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="major_form_required">
+                        </div>
+                        <div class="label_div">
+                            <label for="major_form_required">Major Behavior Required</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="admin_action_required">
+                        </div>
+                        <div class="label_div">
+                            <label for="admin_action_required">Admin Action Required</label>
+                        </div>
+                    </div>
                 </div>
 
             
