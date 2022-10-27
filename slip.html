@@ -229,6 +229,96 @@
             align-items: center;
             float: left;
         }
+        #teacher_actions {
+            width: 300px;
+            float: left;
+            box-sizing: border-box;
+            border-left: solid;
+            border-bottom: solid;
+            border-right: solid;
+            overflow: hidden;
+        }
+        #teacher_actions .heading {
+            height: 15px;
+            width: 300px;
+            padding: 5px;
+            background-color: #F8F8FF;
+        }
+        #teacher_actions .heading span {
+            padding-left: 15px;
+        }
+        #teacher_actions > .heading {
+            height: 15px;
+            width: 300px;
+            padding: 5px;
+            background-color: #EBEBEB;
+        }
+        
+        #step_1 {
+            width: 300px;
+            float: left;
+        }
+        #step_1 > :nth-child(odd) {
+            background-color: #EBEBEB;
+        }
+        #step_1 > :nth-child(even) {
+            background-color: #F8F8FF;
+        }
+        #step_1 .heading {
+            border-top: solid
+        }
+        #step_1 > div {
+            height: 25px;
+            width: 300px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_1 > div .label_div {
+            height: 100%;
+            width: 275px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_1 > div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_2 {
+            width: 300px;
+            float: left;
+        }
+        #step_2 > :nth-child(odd) {
+            background-color: #EBEBEB;
+        }
+        #step_2 > :nth-child(even) {
+            background-color: #F8F8FF;
+        }
+        #step_2 > div {
+            height: 25px;
+            width: 300px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_2 > div .label_div {
+            height: 100%;
+            width: 275px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_2 > div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            display: flex;
+
     </style>
 
     <datalist id="students_list">
@@ -718,18 +808,55 @@
                 <div class="heading">Teacher Actions</div>
                 <div id="step_1">
                     <div class="heading">Step 1</div>
-
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="low_key_response">
+                        </div>
+                        <div class="label_div">
+                            <label for="low_key_response">Low Key Response</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="redirect">
+                        </div>
+                        <div class="label_div">
+                            <label for="redirect">Redirect</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="teach">
+                        </div>
+                        <div class="label_div">
+                            <label for="teach">Teach</label>
+                        </div>
+                    </div>
                 </div>
                 <div id="step_2">
                     <div class="heading">Step 2</div>
-
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="provide_choice">
+                        </div>
+                        <div class="label_div">
+                            <label for="provide_choice">Provide Choice</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="student_confrence">
+                        </div>
+                        <div class="label_div">
+                            <label for="student_confrence">Student Confrence</label>
+                        </div>
+                    </div>
                 </div>
                 <div id="step_3_classroom">
                     <div class="heading">Step 3 - Classroom</div>
 
                 </div>
                 <div id="step_3_playground">
-                    <div class="heading">Step 3 - Playground</div>
 
                 </div>
                 <div id="step_4">
