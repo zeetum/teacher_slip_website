@@ -335,25 +335,21 @@
             padding: 5px;
             background-color: #F8F8FF;
         }
-        #behavior_concequences .heading span {
-            padding-left: 15px;
-        }
         #behavior_concequences > .heading {
             height: 15px;
-            width: 600px;
+            width: 595px;
             padding: 5px;
             background-color: #EBEBEB;
             border-bottom: solid;
         }
         #step_3_classroom {
-            width: 300px;
+            width: 295px;
             float: left;
         }
-
-        #step_3_classroom > :nth-child(odd) {
+        #step_3_classroom > :nth-child(even) {
             background-color: #EBEBEB;
         }
-        #step_3_classroom > :nth-child(even) {
+        #step_3_classroom > :nth-child(odd) {
             background-color: #F8F8FF;
         }
         #step_3_classroom > div {
@@ -376,6 +372,47 @@
             align-items: center;
             float: left;
             display: flex;
+        }
+        #step_3_classroom > .heading {
+            height: 15px;
+            width: 290px;
+            padding: 5px;
+        }
+        #step_3_playground {
+            width: 300px;
+            float: left;
+        }
+        #step_3_playground > :nth-child(odd) {
+            background-color: #EBEBEB;
+        }
+        #step_3_playground > :nth-child(even) {
+            background-color: #F8F8FF;
+        }
+        #step_3_playground > div {
+            height: 25px;
+            width: 300px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_3_playground > div .label_div {
+            height: 100%;
+            width: 275px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_3_playground > div .input_div {
+            height: 100%;
+            width: 25px;
+            align-items: center;
+            float: left;
+            display: flex;
+        }
+        #step_3_playground > .heading {
+            height: 15px;
+            width: 290px;
+            padding: 5px;
         }
     </style>
 
@@ -917,10 +954,10 @@
                     <div class="heading">Step 3 - Classroom</div>
                     <div>
                         <div class="input_div">
-                            <input type="checkbox" name="explicit">
+                            <input type="checkbox" name="explicit_classroom">
                         </div>
                         <div class="label_div">
-                            <label for="explicit">Explicit</label>
+                            <label for="explicit_classroom">Explicit Teaching</label>
                         </div>
                     </div>
                     <div>
@@ -933,10 +970,10 @@
                     </div>
                     <div>
                         <div class="input_div">
-                            <input type="checkbox" name="loss_of_privilege">
+                            <input type="checkbox" name="loss_of_privilege_classroom">
                         </div>
                         <div class="label_div">
-                            <label for="loss_of_privilege">Loss of Privilege</label>
+                            <label for="loss_of_privilege_classroom">Loss of Privilege</label>
                         </div>
                     </div>
                     <div>
@@ -972,10 +1009,48 @@
                         </div>
                     </div>
                 </div>
-                </div>
                 <div id="step_3_playground">
                     <div class="heading">Step 3 - Playground</div>
-
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="explicit_playground">
+                        </div>
+                        <div class="label_div">
+                            <label for="explicit_playground">Explicit Teaching</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="sit_out_of_play">
+                        </div>
+                        <div class="label_div">
+                            <label for="sit_out_of_play">Sit out of play</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="walk_with_teacher">
+                        </div>
+                        <div class="label_div">
+                            <label for="walk_with_teacher">Walk with Teacher</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="loss_of_privilege_playground">
+                        </div>
+                        <div class="label_div">
+                            <label for="loss_of_privilege_playground">Loss of Privilege</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input_div">
+                            <input type="checkbox" name="on_bell_issue">
+                        </div>
+                        <div class="label_div">
+                            <label for="on_bell_issue">On bell Issue</label>
+                        </div>
+                    </div>
                 </div>
             </div>
                 <div id="step_4">
