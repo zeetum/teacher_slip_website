@@ -5,6 +5,8 @@
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <script>
+        students = {Room1: ["tum", "larry"], Room2: ["fred", "bob"]}
+        
         document.addEventListener("DOMContentLoaded", function() {
             // Alternate colours for Behavior columns
             let column = true
@@ -30,6 +32,33 @@
                     });
                 }
             }
+
+            
+            // Populate student field based on room selection
+            document.getElementById("room_search_field").addEventListener("input", function () {
+                let students_list = document.getElementById("students_list")
+                
+                while (students_list.options.length > 0) {
+                    students_list.children[0].remove()
+                }
+
+                if (this.value == "All") {
+                    for (let class_student of Object.values(students)) {
+                        for (let student of class_student) {
+                            var option = document.createElement('option');
+                            option.value = student;
+                            students_list.appendChild(option);
+                        }
+                    }
+                } else {
+                    for (let student of students[this.value]) {
+                        var option = document.createElement('option');
+                        option.value = student;
+                        students_list.appendChild(option);
+                    }
+                }
+                    
+            });
         });
     </script>
 
@@ -538,9 +567,10 @@
     </datalist>
 
     <datalist id="rooms_list">
-        <option value="Room 1">
-        <option value="Room 2">
-        <option value="Room 3">
+        <option value="All"></option>
+        <option value="Room1">
+        <option value="Room2">
+<!--         <option value="Room 3">
         <option value="Room 4">
         <option value="Room 5">
         <option value="Room 6">
@@ -553,7 +583,7 @@
         <option value="Room 13">
         <option value="Science">
         <option value="Art">
-        <option value="Library">
+        <option value="Library"> -->
     </datalist>
 
     <body>
@@ -568,7 +598,7 @@
                         <label for="student">Student</label>
                     </div>
                     <div class="input_div">
-                        <input type="search" name="student" list="students_list">
+                        <input id="student_search_field" type="search" name="student" list="students_list">
                     </div>
                 </div>
                 <div>
@@ -576,7 +606,7 @@
                         <label for="room">Room</label>
                     </div>
                     <div class="input_div">
-                        <input type="search" name="room" list="rooms_list">
+                        <input id="room_search_field" type="search" name="room" list="rooms_list">
                     </div>
                 </div>
                 <div>
