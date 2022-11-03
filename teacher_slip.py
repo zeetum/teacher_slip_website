@@ -50,7 +50,7 @@ def login():
 
         datalists = """
         <datalist id="rooms_list">
-            <option value="All"></option>"""
+            <option value="Other"></option>"""
         for room in students.keys():
             datalists += "<option value='" + room + "'></option>"
         datalists += """</datalist>
@@ -111,7 +111,7 @@ def login():
                             students_list.children[0].remove()
                         }
 
-                        if (this.value == "All") {
+                        if (this.value == "Other") {
                             for (let class_student of Object.values(students)) {
                                 for (let student of class_student) {
                                     var option = document.createElement('option');
