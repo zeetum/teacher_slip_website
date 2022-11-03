@@ -1,3 +1,4 @@
+# sudo flask --app teacher_slip.py run --host=0.0.0.0 --port=80
 import ldap
 import csv
 from flask import Flask, request, redirect
