@@ -33,8 +33,11 @@ def get_room_students(file_path):
         next(student_csv)
         students = {}
         for student_details in student_csv:
-            students.setdefault(student_details[10], []).append(student_details[4] + " " + student_details[2])
-        
+            students.setdefault(student_details[10], []).append(student_details[2] + " " + student_details[4])
+
+        for s in students.values():
+            s = s.sort()
+            
         return students
             
 
@@ -126,7 +129,6 @@ def login():
                                 students_list.appendChild(option);
                             }
                         }
-                            
                     });
                 });
             </script>
@@ -652,7 +654,7 @@ def login():
                                 <label for="date">Date</label>
                             </div>
                             <div class="input_div">
-                                <input type="text" name="date" placeholder="currentdate">
+                                <input type="text" name="date" value="currentdate">
                             </div>
                         </div>
                     </div>
