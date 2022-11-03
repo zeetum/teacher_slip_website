@@ -26,15 +26,14 @@ def check_credentials(username, password):
 
 # returns a dict in the form"
 #   "Room 1": ["Fred", "Larry", "Sam"]
-def get_room_students():
-    with open('/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv', newline='') as csvfile:
+def get_room_students(file_path):
+    with open(file_path, newline='') as csvfile:
         student_csv = csv.reader(csvfile)
         next(student_csv)
         students = {}
         for student_details in student_csv:
             students.setdefault(student_details[10], []).append(student_details[4] + " " + student_details[2])
         
-        print(students)
         return students
             
 
@@ -44,7 +43,7 @@ def login():
     password = request.form['password']
 
     teacher = check_credentials(username, password)
-    students = get_room_students()
+    students = get_room_students('/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv')
 
     if (teacher):
 
