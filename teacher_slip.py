@@ -24,12 +24,18 @@ def check_credentials(username, password):
     result = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
     return result.decode('utf-8')
 
-def get_students():
+# returns a dict in the form"
+#   "Room 1": ["Fred", "Larry", "Sam"]
+def get_room_students():
     with open('/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv', newline='') as csvfile:
         student_csv = csv.reader(csvfile)
-        details = {}
+        next(student_csv)
+        students = {}
         for student_details in student_csv:
-            details.setdefault(student_details[10], []).append(student_details[4] + " " + student_details[2])
+            students.setdefault(student_details[10], []).append(student_details[4] + " " + student_details[2])
+        
+        print(students)
+        return students
             
 
 @app.route('/login', methods=['POST'])
@@ -38,28 +44,39 @@ def login():
     password = request.form['password']
 
     teacher = check_credentials(username, password)
-    students = get_students()
+    students = get_room_students()
 
     if (teacher):
+
+        datalists = """
+        <datalist id="rooms_list">
+            <option value="All"></option>"""
+        for room in students.keys():
+            datalists += "<option value='" + room + "'></option>"
+        datalists += """</datalist>
+        <datalist id="students_list">"""
+        for rooms in students.values():
+            for student in rooms:
+                datalists += "<option value='" + student + "'></option>"         
+        datalists += """</datalist>"""
+        
         html = """
         <!DOCTYPE html>
         <html>
             <head>
                 <title>Teacher Minor Behavior Slip</title>
-                <link rel="stylesheet" type="text/css" href="index.css">
             </head>
-            <html>
-                <datalist id="students_list">
-                </datalist>
+            <script  type="text/javascript">"""
 
-                <datalist id="rooms_list">
-                    <option value="All"></option>
-                </datalist>
-            </html>
-            <script>
-                students = {Room1: ["tum", "larry"], Room2: ["fred", "bob"]}
+        room_strings = []
+        for room in students.keys():
+            students_array = "'" + room + "':["
+            students_array += ",".join(f'"{s}"' for s in students[room])
+            students_array += "]"
+            room_strings.append(students_array)
 
-                document.addEventListener("DOMContentLoaded", function() {
+        html += " students = {" + ",".join(room_strings) + "}; "
+        html += """document.addEventListener("DOMContentLoaded", function() {
                     // Alternate colours for Behavior columns
                     let column = true
                     for (let behaviors of document.getElementsByClassName("sub_behavior_details")) {
@@ -610,7 +627,7 @@ def login():
             <body>
                 <div id=teacher_header>
                     <span>Tim Blackburn Student Minor Behavior Slip</span>
-                </div>
+                </div>""" + datalists + """
                 
                 <form id="minor_slip_form" action="/submit_form">
                     <div id=incident_details>
