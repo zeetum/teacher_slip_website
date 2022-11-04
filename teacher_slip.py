@@ -12,14 +12,15 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 @app.route('/submit', methods=['POST'])
 def submit():
     data = {}
-    """     data['First Name'] = request.form['student'].split()[0]
+    
+    data['First Name'] = request.form['student'].split()[0]
     data['Last Name'] = request.form['student'].split()[1]
     teacher = request.form['teacher'].split()
     teacher.reverse()
     data['Referring Staff Member'] = ", ".join(teacher)
     data['Form'] = request.form['room']
     data['Date'] = request.form['date']
-    data['Month'] = months[data['Date'] - 1] """
+    data['Month'] = months[int(data['Date'].split("/")[1]) - 1]
 
     data['Time'] = {
                         "Before School": request.form.get('time1'),
@@ -32,7 +33,6 @@ def submit():
                         "After School": request.form.get('time8')
                     }
     data['Time'] = list(dict(filter(lambda time: time[1] != None, data['Time'].items())).keys())
-    print(data['Time'])
 
     data['Location'] = {
                         "Classroom": request.form.get('classroom'),
@@ -62,7 +62,6 @@ def submit():
                         
                        }
     data['Location'] = list(dict(filter(lambda time: time[1] != None, data['Location'].items())).keys())
-    print(data['Location'])
 
     data['Minor Offenses'] = {
                         "Unprepared": request.form.get('unprepared'),
@@ -84,7 +83,6 @@ def submit():
                         "Dishonesty": request.form.get('dishonesty')
                       }
     data['Minor Offenses'] = list(dict(filter(lambda time: time[1] != None, data['Minor Offenses'].items())).keys())
-    print(data['Minor Offenses'])
 
     data["Actions"] = {
                         "Step 1: Low Key Response": request.form.get('low_key_response'),
@@ -108,8 +106,9 @@ def submit():
                         "Admin Action Required": request.form.get('admin_action_required')
                       }
     data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
-    print(data['Actions'])
     
+    print(data)
+
     return "Submitted Data"
 
 def check_credentials(username, password):
@@ -747,7 +746,7 @@ def login():
                     <span id="teacher">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
                 </div>""" + datalists + """
                 <form id="minor_slip_form" action="/submit" method='POST'>
-                    <input type="hidden" name="teacher_name" value='""" + teacher + """'>
+                    <input type="hidden" name="teacher" value='""" + teacher + """'>
                     <div id=incident_details>
                         <div>
                             <div class="label_div">
