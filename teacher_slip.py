@@ -2,6 +2,10 @@
 import ldap
 import csv
 from flask import Flask, request, redirect
+from datetime import date
+
+today = date.today().strftime("%d/%m/%Y")
+
 app = Flask(__name__)
 
 def check_credentials(username, password):
@@ -22,8 +26,10 @@ def check_credentials(username, password):
     ldap_filter = "(sAMAccountName=" + username + ")"
     attributes = ['displayName']
     
-    result = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
-    return result.decode('utf-8')
+    teacher_details = ldap_client.search_s(base_dn, ldap.SCOPE_SUBTREE, ldap_filter, attributes)[0][1]['displayName'][0]
+    teacher_details = teacher_details.decode('utf-8').title().split()
+    teacher_details.reverse()
+    return " ".join(teacher_details)
 
 # returns a dict in the form"
 #   "Room 1": ["Fred", "Larry", "Sam"]
@@ -77,8 +83,8 @@ def login():
             students_array += ",".join(f'"{s}"' for s in students[room])
             students_array += "]"
             room_strings.append(students_array)
-
         html += " students = {" + ",".join(room_strings) + "}; "
+
         html += """document.addEventListener("DOMContentLoaded", function() {
                     // Alternate colours for Behavior columns
                     let column = true
@@ -146,9 +152,15 @@ def login():
                     border-top-left-radius: 15px;
                     border-top-right-radius: 15px;
                 }
-                #teacher_header span {
+                #teacher_header #teacher_name {
                     line-height: 50px;
                     padding-left: 5px;
+                    font-size: 30px;
+                }
+                #teacher_header #form_name {
+                    line-height: 50px;
+                    padding-right: 5px;
+                    float: right;
                 }
 
                 #minor_slip_form {
@@ -628,10 +640,11 @@ def login():
 
             <body>
                 <div id=teacher_header>
-                    <span>Tim Blackburn Student Minor Behavior Slip</span>
+                    <span id="teacher_name">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
                 </div>""" + datalists + """
                 
                 <form id="minor_slip_form" action="/submit_form">
+                    <input type="hidden" name="teacher_name" value='""" + teacher + """'>
                     <div id=incident_details>
                         <div>
                             <div class="label_div">
@@ -654,7 +667,7 @@ def login():
                                 <label for="date">Date</label>
                             </div>
                             <div class="input_div">
-                                <input type="text" name="date" value="currentdate">
+                                <input type="text" name="date" value='""" + today + """'>
                             </div>
                         </div>
                     </div>
