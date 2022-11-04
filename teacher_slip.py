@@ -120,11 +120,13 @@ def submit():
                     data['Month'], ";".join(data['Time']), ";".join(data['Location']), data['Major Offence'], ";".join(data['Minor Offenses']),
                     ";".join(data['Actions']), data['Week']
                 ]
-
-    wb = load_workbook(filename="/home/tum/Documents/www\'/Monitoring Minor Behaviours 2022.xlsm", read_only=False, keep_vba=True)
-    ws = wb.worksheets['DataEntry']
-    ws.append(row_data)
-    wb.save("/home/tum/Documents/www\'/Monitoring Minor Behaviours 2022.xlsm")
+    print("before")
+    wb = load_workbook("/home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm", keep_vba=True)
+    print("after")
+    ws = wb.worksheets["DataEntry"]
+    print(ws[1])
+    #ws.append(row_data)
+    #wb.save("home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm")
 
     return "Submitted Data"
 
