@@ -62,8 +62,28 @@ def submit():
                        }
     data['Location'] = list(dict(filter(lambda time: time[1] != None, data['Location'].items())).keys())
     print(data['Location'])
+    data['Offence'] = {
+                        "Unprepared": request.form.get('unprepared'),
+                        "Poor Language": request.form.get('poor_language'),
+                        "Late to Class": request.form.get('late'),
+                        "Work Avoidance": request.form.get('work_avoidance'),
+                        "Off Task": request.form.get('off_task'),
+                        "Not Following Instructions": request.form.get('instructions'),
+                        "Disrupting Class": request.form.get('disrupting_class'),
+                        "Calling Out": request.form.get('calling_out'),
+                        "Talking Back": request.form.get('talking_back'),
+                        "Property Misuse": request.form.get('property_misuse'),
+                        "Technology Misuse": request.form.get('tech_misuse'),
+                        "Poor Behavior": request.form.get('poor_behavior'),
+                        "Physical Contact": request.form.get('physical_contact'),
+                        "Dress Code": request.form.get('dress_code'),
+                        "Inattentive": request.form.get('inattentive'),
+                        "Lacks Application": request.form.get('lacks_application'),
+                        "Dishonesty": request.form.get('dishonesty')
+                      }
+    data['Offence'] = list(dict(filter(lambda time: time[1] != None, data['Offence'].items())).keys())
+    print(data['Offence'])
     return "Submitted Data"
-
 
 def check_credentials(username, password):
     ldap_server = "ldap://e5070s01sv001.indigo.schools.internal"
@@ -929,7 +949,7 @@ def login():
                         <div class="heading">Time</div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time1" checked="unchecked">
+                                <input type="checkbox" name="time1">
                             </div>
                             <div class="label_div">
                                 <label for="time1">Before School</label>
@@ -937,7 +957,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time2" checked="unchecked">
+                                <input type="checkbox" name="time2">
                             </div>
                             <div class="label_div">
                                 <label for="time2">8:50 - 10:20</label>
@@ -945,7 +965,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time3" checked="unchecked">
+                                <input type="checkbox" name="time3">
                             </div>
                             <div class="label_div">
                                 <label for="time3">Recess</label>
@@ -953,7 +973,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time4" checked="unchecked">
+                                <input type="checkbox" name="time4">
                             </div>
                             <div class="label_div">
                                 <label for="time4">10:40 - 11:40</label>
@@ -961,7 +981,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time5" checked="unchecked">
+                                <input type="checkbox" name="time5">
                             </div>
                             <div class="label_div">
                                 <label for="time5">11:40 - 12:40</label>
@@ -969,7 +989,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time6" checked="unchecked">
+                                <input type="checkbox" name="time6">
                             </div>
                             <div class="label_div">
                                 <label for="time6">Lunch</label>
@@ -977,7 +997,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time7 checked="unchecked">
+                                <input type="checkbox" name="time7">
                             </div>
                             <div class="label_div">
                                 <label for="time7">1:20 - 3:00</label>
@@ -985,7 +1005,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time8" checked="unchecked">
+                                <input type="checkbox" name="time8">
                             </div>
                             <div class="label_div">
                                 <label for="time8">After School</label>
