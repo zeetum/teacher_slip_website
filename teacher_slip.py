@@ -1,12 +1,40 @@
+
 # flask --app teacher_slip.py run --host=0.0.0.0
 import ldap
 import csv
 from flask import Flask, request, redirect
 from datetime import date
 
-today = date.today().strftime("%d/%m/%Y")
-
 app = Flask(__name__)
+today = date.today().strftime("%d/%m/%Y")
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = {}
+    """     data['First Name'] = request.form['student'].split()[0]
+    data['Last Name'] = request.form['student'].split()[1]
+    teacher = request.form['teacher'].split()
+    teacher.reverse()
+    data['Referring Staff Member'] = ", ".join(teacher)
+    data['Form'] = request.form['room']
+    data['Date'] = request.form['date']
+    data['Month'] = months[data['Date'] - 1] """
+
+    data['Time'] = {
+                        "Before School": request.form.get('time1'),
+                        "8:50 - 10:20": request.form.get('time2'),
+                        "Recess": request.form.get('time3'),
+                        "10:40 - 11:40": request.form.get('time4'),
+                        "11:40 - 12:40": request.form.get('time5'),
+                        "Lunch": request.form.get('time6'),
+                        "1:20 - 3:00": request.form.get('time7'),
+                        "After School": request.form.get('time8')
+                    }
+    data['Time'] = list(dict(filter(lambda time: time[1] != None, data['Time'].items())).keys())
+
+    return "Submitted Data"
+
 
 def check_credentials(username, password):
     ldap_server = "ldap://e5070s01sv001.indigo.schools.internal"
@@ -640,10 +668,9 @@ def login():
 
             <body>
                 <div id=teacher_header>
-                    <span id="teacher_name">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
+                    <span id="teacher">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
                 </div>""" + datalists + """
-                
-                <form id="minor_slip_form" action="/submit_form">
+                <form id="minor_slip_form" action="/submit" method='POST'>
                     <input type="hidden" name="teacher_name" value='""" + teacher + """'>
                     <div id=incident_details>
                         <div>
@@ -873,7 +900,7 @@ def login():
                         <div class="heading">Time</div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time1">
+                                <input type="checkbox" name="time1" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time1">Before School</label>
@@ -881,7 +908,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time2">
+                                <input type="checkbox" name="time2" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time2">8:50 - 10:20</label>
@@ -889,7 +916,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time3">
+                                <input type="checkbox" name="time3" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time3">Recess</label>
@@ -897,7 +924,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time4">
+                                <input type="checkbox" name="time4" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time4">10:40 - 11:40</label>
@@ -905,7 +932,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time5">
+                                <input type="checkbox" name="time5" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time5">11:40 - 12:40</label>
@@ -913,7 +940,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time6">
+                                <input type="checkbox" name="time6" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time6">Lunch</label>
@@ -921,7 +948,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time7">
+                                <input type="checkbox" name="time7 checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time7">1:20 - 3:00</label>
@@ -929,7 +956,7 @@ def login():
                         </div>
                         <div class="time_option">
                             <div class="input_div">
-                                <input type="checkbox" name="time8">
+                                <input type="checkbox" name="time8" checked="unchecked">
                             </div>
                             <div class="label_div">
                                 <label for="time8">After School</label>
