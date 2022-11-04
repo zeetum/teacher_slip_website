@@ -754,7 +754,7 @@ def login():
                                 <label for="room">Room</label>
                             </div>
                             <div class="input_div">
-                                <input id="room_search_field" type="search" name="room" list="rooms_list">
+                                <input id="room_search_field" type="search" name="room" list="rooms_list" required>
                             </div>
                         </div>
                         <div>
@@ -762,7 +762,7 @@ def login():
                                 <label for="student">Student</label>
                             </div>
                             <div class="input_div">
-                                <input id="student_search_field" type="search" name="student" list="students_list">
+                                <input id="student_search_field" type="search" name="student" list="students_list" required>
                             </div>
                         </div>
                         <div>
