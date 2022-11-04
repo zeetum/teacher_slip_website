@@ -13,8 +13,8 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 def submit():
     data = {}
     
-    data['First Name'] = request.form['student'].split()[0]
-    data['Last Name'] = request.form['student'].split()[1]
+    data['First Name'] = request.form['student'].split()[1]
+    data['Last Name'] = request.form['student'].split()[0]
     teacher = request.form['teacher'].split()
     teacher.reverse()
     data['Referring Staff Member'] = ", ".join(teacher)
