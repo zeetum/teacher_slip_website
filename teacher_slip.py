@@ -4,6 +4,7 @@ import ldap
 import csv
 from flask import Flask, request, redirect
 from datetime import date
+from openpyxl import load_workbook
 
 app = Flask(__name__)
 today = date.today().strftime("%d/%m/%Y")
@@ -11,6 +12,7 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 
 @app.route('/submit', methods=['POST'])
 def submit():
+    # Get form data into a dictionary
     data = {}
     
     data['First Name'] = request.form['student'].split()[1]
@@ -20,6 +22,9 @@ def submit():
     data['Referring Staff Member'] = ", ".join(teacher)
     data['Form'] = request.form['room']
     data['Date'] = request.form['date']
+    data['Term'] = None
+    data['Week'] = None
+    data['Major Offence'] = None
     data['Month'] = months[int(data['Date'].split("/")[1]) - 1]
 
     data['Time'] = {
@@ -108,6 +113,18 @@ def submit():
     data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
     
     print(data)
+
+    # Write data to spreadsheet
+    row_data = [
+                    data['Last Name'], data['First Name'], data['Form'], data['Referring Staff Member'], data['Date'], data['Term'],
+                    data['Month'], ";".join(data['Time']), ";".join(data['Location']), data['Major Offence'], ";".join(data['Minor Offenses']),
+                    ";".join(data['Actions']), data['Week']
+                ]
+
+    wb = load_workbook(filename="/home/tum/Documents/www\'/Monitoring Minor Behaviours 2022.xlsm", read_only=False, keep_vba=True)
+    ws = wb.worksheets['DataEntry']
+    ws.append(row_data)
+    wb.save("/home/tum/Documents/www\'/Monitoring Minor Behaviours 2022.xlsm")
 
     return "Submitted Data"
 
