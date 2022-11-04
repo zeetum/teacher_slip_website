@@ -33,6 +33,7 @@ def submit():
                     }
     data['Time'] = list(dict(filter(lambda time: time[1] != None, data['Time'].items())).keys())
     print(data['Time'])
+
     data['Location'] = {
                         "Classroom": request.form.get('classroom'),
                         "Front Quiet": request.form.get('front_quiet'),
@@ -62,7 +63,8 @@ def submit():
                        }
     data['Location'] = list(dict(filter(lambda time: time[1] != None, data['Location'].items())).keys())
     print(data['Location'])
-    data['Offence'] = {
+
+    data['Minor Offenses'] = {
                         "Unprepared": request.form.get('unprepared'),
                         "Poor Language": request.form.get('poor_language'),
                         "Late to Class": request.form.get('late'),
@@ -81,8 +83,33 @@ def submit():
                         "Lacks Application": request.form.get('lacks_application'),
                         "Dishonesty": request.form.get('dishonesty')
                       }
-    data['Offence'] = list(dict(filter(lambda time: time[1] != None, data['Offence'].items())).keys())
-    print(data['Offence'])
+    data['Minor Offenses'] = list(dict(filter(lambda time: time[1] != None, data['Minor Offenses'].items())).keys())
+    print(data['Minor Offenses'])
+
+    data["Actions"] = {
+                        "Step 1: Low Key Response": request.form.get('low_key_response'),
+                        "Step 1: Redirect": request.form.get('redirect'),
+                        "Step 1: Teach": request.form.get('teach'),
+                        "Step 2: Provide Choice": request.form.get('provide_choice'),
+                        "Step 2: Student Confrence": request.form.get('student_confrence'),
+                        "Step 3: Explicit Teaching": request.form.get('explicit_classroom'),
+                        "Step 3: Isolation": request.form.get('isolation'),
+                        "Step 3: Loss of Privilege": request.form.get('loss_of_privilege_classroom'),
+                        "Step 3: Partner Room Referral": request.form.get('partner_referral'),
+                        "Step 3: Parent Notification": request.form.get('parent_notification'),
+                        "Step 3: Parent Meeting": request.form.get('parent_meeting'),
+                        "Step 3: Informal Contract": request.form.get('informal_contract'),
+                        "Step 3: Explicit Teaching": request.form.get('explicit_playground'),
+                        "Step 3: Sit out of play": request.form.get('sit_out_of_play'),
+                        "Step 3: Walk with Teacher": request.form.get('walk_with_teacher'),
+                        "Step 3: Loss of Privilege": request.form.get('loss_of_privilege_playground'),
+                        "Step 3: On bell Issue": request.form.get('on_bell_issue'),
+                        "Major Behavior Required": request.form.get('major_form_required'),
+                        "Admin Action Required": request.form.get('admin_action_required')
+                      }
+    data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
+    print(data['Actions'])
+    
     return "Submitted Data"
 
 def check_credentials(username, password):
