@@ -32,7 +32,36 @@ def submit():
                         "After School": request.form.get('time8')
                     }
     data['Time'] = list(dict(filter(lambda time: time[1] != None, data['Time'].items())).keys())
-
+    print(data['Time'])
+    data['Location'] = {
+                        "Classroom": request.form.get('classroom'),
+                        "Front Quiet": request.form.get('front_quiet'),
+                        "Nature Play": request.form.get('nature_play'),
+                        "Play Equipment": request.form.get('play_equipment'),
+                        "Sand Pit": request.form.get('sand_pit'),
+                        "PP Playground": request.form.get('pp_playground'),
+                        "Music": request.form.get('music'),
+                        "Languages": request.form.get('languages'),
+                        "Art": request.form.get('art'),
+                        "Phys Ed": request.form.get('phys_ed'),
+                        "Science": request.form.get('science'),
+                        "Library": request.form.get('library'),
+                        "Library Grass": request.form.get('library_grass'),
+                        "Daily Fitness": request.form.get('fitness'),
+                        "Assembly": request.form.get('assembly'),
+                        "Toilets": request.form.get('toilets'),
+                        "Gazebo": request.form.get('gazebo'),
+                        "Under Cover": request.form.get('under_cover'),
+                        "Green Patch": request.form.get('green_patch'),
+                        "Verandah": request.form.get('verandah'),
+                        "Basketball Court": request.form.get('basketball'),
+                        "Oval": request.form.get('oval'),
+                        "Transition": request.form.get('excersion'),
+                        "Excursion": request.form.get('transition')
+                        
+                       }
+    data['Location'] = list(dict(filter(lambda time: time[1] != None, data['Location'].items())).keys())
+    print(data['Location'])
     return "Submitted Data"
 
 
