@@ -1,10 +1,10 @@
 
 # flask --app teacher_slip.py run --host=0.0.0.0
+import os
 import ldap
 import csv
 from flask import Flask, request, redirect
 from datetime import date
-from openpyxl import load_workbook
 
 app = Flask(__name__)
 today = date.today().strftime("%d/%m/%Y")
@@ -13,13 +13,14 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 @app.route('/submit', methods=['POST'])
 def submit():
     # Get form data into a dictionary
+    csv_file_path = "/home/tum/csv_data/minor_behvaior.csv"
     data = {}
     
     data['First Name'] = request.form['student'].split()[1]
     data['Last Name'] = request.form['student'].split()[0]
     teacher = request.form['teacher'].split()
     teacher.reverse()
-    data['Referring Staff Member'] = ", ".join(teacher)
+    data['Referring Staff Member'] = "\"" + ", ".join(teacher) + "\""
     data['Form'] = request.form['room']
     data['Date'] = request.form['date']
     data['Term'] = None
@@ -112,20 +113,22 @@ def submit():
                       }
     data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
     
-    print(data)
-
+    for key, entry in data.items():
+        if entry == None:
+            data[key] = "Not Specified"
+    
     # Write data to spreadsheet
     row_data = [
-                    data['Last Name'], data['First Name'], data['Form'], data['Referring Staff Member'], data['Date'], data['Term'],
+                    data['First Name'], data['Last Name'], data['Form'], data['Referring Staff Member'], data['Date'], data['Term'],
                     data['Month'], ";".join(data['Time']), ";".join(data['Location']), data['Major Offence'], ";".join(data['Minor Offenses']),
                     ";".join(data['Actions']), data['Week']
                 ]
-    print("before")
-    wb = load_workbook("/home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm", keep_vba=True)
-    print("after")
-    ws = wb.worksheets[1]
-    ws.append(row_data)
-    wb.save("/home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm")
+    if os.path.exists(csv_file_path) != True:
+        with open(csv_file_path, "w") as csv_file:
+            csv_file.write("First Name, Last Name, Room, Referring Staff Member, Date, Term, Month, Time, Location, Major Offence, Minor Offence, Actions, Week\n")
+    
+    with open(csv_file_path, "a") as csv_file:
+        csv_file.write(",".join(row_data) + "\n")
 
     return "Submitted Data"
 
