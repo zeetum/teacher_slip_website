@@ -5,15 +5,45 @@ import ldap
 import csv
 from flask import Flask, request, redirect
 from datetime import date
+import smtplib
 
 app = Flask(__name__)
+
+students_csv = '/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv'
+output_csv = "/home/tum/csv_data/minor_behvaior.csv"
+
 today = date.today().strftime("%d/%m/%Y")
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+def email_admin(TEXT):
+    SERVER = "smtp.office365.com"
+    FROM = "timothy.blackburn@eduaction.wa.edu.au"
+    TO = ["timothy.blackburn@eduaction.wa.edu.au"] # must be a list
+
+    SUBJECT = "Hello!"
+    TEXT = "This is a test of emailing through smtp of example.com."
+
+    # Prepare actual message
+    message = """From: %s\r\nTo: %s\r\nSubject: %s\r\n\
+
+    %s
+    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+
+    # Send the mail
+    print("sending mail")
+    server = smtplib.SMTP(host=SERVER, port=587)
+    print("1")
+    server.starttls()
+    print("3")
+    server.login("timothy.blackburn@education.wa.edu.au", "Minninnup66")
+    print("4")
+    server.sendmail(FROM, TO, message)
+    print("5")
+    server.quit()
 
 @app.route('/submit', methods=['POST'])
 def submit():
     # Get form data into a dictionary
-    csv_file_path = "/home/tum/csv_data/minor_behvaior.csv"
     data = {}
     
     data['First Name'] = request.form['student'].split()[1]
@@ -123,12 +153,14 @@ def submit():
                     data['Month'], ";".join(data['Time']), ";".join(data['Location']), data['Major Offence'], ";".join(data['Minor Offenses']),
                     ";".join(data['Actions']), data['Week']
                 ]
-    if os.path.exists(csv_file_path) != True:
+    if os.path.exists(output_csv) != True:
         with open(csv_file_path, "w") as csv_file:
             csv_file.write("First Name, Last Name, Room, Referring Staff Member, Date, Term, Month, Time, Location, Major Offence, Minor Offence, Actions, Week\n")
     
-    with open(csv_file_path, "a") as csv_file:
+    with open(output_csv, "a") as csv_file:
         csv_file.write(",".join(row_data) + "\n")
+
+    #email_admin(",".join(row_data) + "\n")
 
     return "Submitted Data"
 
@@ -177,7 +209,7 @@ def login():
     password = request.form['password']
 
     teacher = check_credentials(username, password)
-    students = get_room_students('/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv')
+    students = get_room_students(students_csv)
 
     if (teacher):
 
