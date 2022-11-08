@@ -123,10 +123,9 @@ def submit():
     print("before")
     wb = load_workbook("/home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm", keep_vba=True)
     print("after")
-    ws = wb.worksheets["DataEntry"]
-    print(ws[1])
-    #ws.append(row_data)
-    #wb.save("home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm")
+    ws = wb.worksheets[1]
+    ws.append(row_data)
+    wb.save("/home/tum/Documents/Monitoring Minor Behaviours 2022.xlsm")
 
     return "Submitted Data"
 
@@ -646,18 +645,19 @@ def login():
                     float: left;
                     display: flex;
                 }
-                #step_4 > .heading {
-                    height: 15px;
-                    width: 295px;
-                    padding: 5px;
-                }
+
                 
                 #step_4 {
                     width: 600px;
                     float: left;
-                    border-left: solid;
-                    border-bottom: solid;
-                    border-right: solid;
+                    border-left: 2px solid;
+                    border-bottom: 2px solid;
+                    border-right: 2px solid;
+                }
+                #step_4 > .heading {
+                    height: 15px;
+                    width: 295px;
+                    padding: 5px;
                 }
                 #step_4 > :nth-child(odd) {
                     background-color: #EBEBEB;
@@ -693,11 +693,11 @@ def login():
                 }
 
                 #contact_admin {
-                    width: 291px;
+                    width: 294px;
                     height: 75px;
                     float: left;
-                    border-bottom: solid;
-                    border-right: solid;
+                    border-bottom: 2px solid;
+                    border-right: 2px solid;
                     background-color: #EBEBEB;
                 }
                 #contact_admin .label_div {
@@ -762,7 +762,7 @@ def login():
 
             <body>
                 <div id=teacher_header>
-                    <span id="teacher">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
+                    <span id="teacher_name">""" + teacher + """</span> <span id="form_name">Student Minor Behavior Slip</span>
                 </div>""" + datalists + """
                 <form id="minor_slip_form" action="/submit" method='POST'>
                     <input type="hidden" name="teacher" value='""" + teacher + """'>
