@@ -10,7 +10,7 @@ import smtplib
 app = Flask(__name__)
 
 students_csv = '/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv'
-output_csv = "/home/tum/csv_data/minor_behvaior.csv"
+output_csv = "/srv/minor_behavior_slip/minor_behvaior.csv"
 
 today = date.today().strftime("%d/%m/%Y")
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -43,11 +43,10 @@ def email_admin(TEXT):
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    # Get form data into a dictionary
     data = {}
-    
-    data['First Name'] = request.form['student'].split()[1]
+
     data['Last Name'] = request.form['student'].split()[0]
+    data['First Name'] = request.form['student'].split()[1]
     teacher = request.form['teacher'].split()
     teacher.reverse()
     data['Referring Staff Member'] = "\"" + ", ".join(teacher) + "\""
@@ -143,6 +142,8 @@ def submit():
                       }
     data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
     
+    data['Comments'] = request.form.get('addtional_comments')
+
     for key, entry in data.items():
         if entry == None:
             data[key] = "Not Specified"
@@ -151,11 +152,11 @@ def submit():
     row_data = [
                     data['First Name'], data['Last Name'], data['Form'], data['Referring Staff Member'], data['Date'], data['Term'],
                     data['Month'], ";".join(data['Time']), ";".join(data['Location']), data['Major Offence'], ";".join(data['Minor Offenses']),
-                    ";".join(data['Actions']), data['Week']
+                    ";".join(data['Actions']), data['Week'], data['Comments']
                 ]
     if os.path.exists(output_csv) != True:
-        with open(csv_file_path, "w") as csv_file:
-            csv_file.write("First Name, Last Name, Room, Referring Staff Member, Date, Term, Month, Time, Location, Major Offence, Minor Offence, Actions, Week\n")
+        with open(output_csv, "w") as csv_file:
+            csv_file.write("First Name, Last Name, Room, Referring Staff Member, Date, Term, Month, Time, Location, Major Offence, Minor Offence, Actions, Week, Comments\n")
     
     with open(output_csv, "a") as csv_file:
         csv_file.write(",".join(row_data) + "\n")
