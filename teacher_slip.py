@@ -17,8 +17,8 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 
 def email_admin(TEXT):
     SERVER = "smtp.office365.com"
-    FROM = "timothy.blackburn@eduaction.wa.edu.au"
-    TO = ["timothy.blackburn@eduaction.wa.edu.au"] # must be a list
+    FROM = "user.name@eduaction.wa.edu.au"
+    TO = ["user.name@eduaction.wa.edu.au"] # must be a list
 
     SUBJECT = "Hello!"
     TEXT = "This is a test of emailing through smtp of example.com."
