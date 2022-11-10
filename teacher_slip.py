@@ -35,7 +35,7 @@ def email_admin(TEXT):
     print("1")
     server.starttls()
     print("3")
-    server.login("timothy.blackburn@education.wa.edu.au", "Minninnup66")
+    server.login("user.name@education.wa.edu.au", "Password")
     print("4")
     server.sendmail(FROM, TO, message)
     print("5")
