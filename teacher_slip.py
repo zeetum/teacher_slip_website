@@ -10,7 +10,7 @@ import smtplib
 app = Flask(__name__)
 
 students_csv = '/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv'
-output_csv = "/srv/minor_behavior_slip/minor_behvaior.csv"
+output_csv = "/srv/minor_slip/minor_behvaior.csv"
 
 today = date.today().strftime("%d/%m/%Y")
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -142,7 +142,7 @@ def submit():
                       }
     data['Actions'] = list(dict(filter(lambda time: time[1] != None, data['Actions'].items())).keys())
     
-    data['Comments'] = request.form.get('addtional_comments')
+    data['Comments'] = "\"" + request.form.get('addtional_comments').replace('\n', ' ').replace('\r', '') + "\""
 
     for key, entry in data.items():
         if entry == None:
@@ -1514,7 +1514,7 @@ def homepage():
         }
     </style>"""
     html = """
-    <h1 id='login_heading'>Booking Resources</h1>
+    <h1 id='login_heading'>Minor Behaviour Slip</h1>
     <div id='login_panel'>
         <div id='login_background'>
             <form id='login_form' action="/login" method='POST'>
