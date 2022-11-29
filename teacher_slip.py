@@ -164,7 +164,47 @@ def submit():
 
     #email_admin(",".join(row_data) + "\n")
 
-    return "Submitted Data"
+    style = """
+    <style>
+        * {
+            font-family: Helvetica;
+            box-sizing: border-box;
+            font-size: 30px;
+        }
+        #submit_label {
+            position: absolute;
+            width: 350px;
+            height: 50px;
+            
+            top: calc(50% - 50px);
+            left: calc(50% - 150px);
+            
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-top: 2px solid black;
+            border-left:2px solid black;
+            border-right: 2px solid black;
+            
+            background-color: #EBEBEB;
+        }
+        #submit_student {
+            position: absolute;
+            width: 350px;
+            height: 50px;
+
+            top: calc(50%);
+            left: calc(50% - 150px);
+
+            border:2px solid black;
+            background-color: #F8F8FF;
+        }
+    </style>"""
+    html = """
+              <div id="submit_label">Minor Behavior Submitted</div>
+              <div id="submit_student">""" + data['First Name'] + " " + data['Last Name'] + """</div>
+           """
+
+    return style + html
 
 def check_credentials(username, password):
     ldap_server = "ldap://e5070s01sv001.indigo.schools.internal"
