@@ -321,7 +321,7 @@ def login():
                         }
 
                         if (this.value == "Other") {
-                            var all_students = []
+                            let all_students = []
                             for (let class_student of Object.values(students)) {
                                 for (let student of class_student) {
                                     all_students.push(student)
