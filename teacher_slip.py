@@ -321,12 +321,17 @@ def login():
                         }
 
                         if (this.value == "Other") {
+                            var all_students = []
                             for (let class_student of Object.values(students)) {
                                 for (let student of class_student) {
-                                    var option = document.createElement('option');
-                                    option.value = student;
-                                    students_list.appendChild(option);
+                                    all_students.push(student)
                                 }
+                            }
+                            all_students.sort()
+                            for (let student of all_students) {
+                                var option = document.createElement('option');
+                                option.value = student;
+                                students_list.appendChild(option);
                             }
                         } else {
                             for (let student of students[this.value]) {
