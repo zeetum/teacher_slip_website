@@ -6,6 +6,7 @@ import csv
 from flask import Flask, request, redirect
 from datetime import date
 import smtplib
+import collections
 
 app = Flask(__name__)
 
@@ -194,9 +195,11 @@ def get_room_students(file_path):
     with open(file_path, newline='') as csvfile:
         student_csv = csv.reader(csvfile)
         next(student_csv)
+
         students = {}
         for student_details in student_csv:
             students.setdefault(student_details[10], []).append(student_details[2] + " " + student_details[4])
+        students = collections.OrderedDict(sorted(students.items(), key=lambda room: room[0]))
 
         for s in students.values():
             s = s.sort()
@@ -808,7 +811,7 @@ def login():
                                 <label for="room">Room</label>
                             </div>
                             <div class="input_div">
-                                <input id="room_search_field" type="search" name="room" list="rooms_list" required>
+                                <input id="room_search_field" type="search" name="room" list="rooms_list" required autocomplete="off">
                             </div>
                         </div>
                         <div>
@@ -816,7 +819,7 @@ def login():
                                 <label for="student">Student</label>
                             </div>
                             <div class="input_div">
-                                <input id="student_search_field" type="search" name="student" list="students_list" required>
+                                <input id="student_search_field" type="search" name="student" list="students_list" required autocomplete="off">
                             </div>
                         </div>
                         <div>
