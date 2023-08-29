@@ -1,4 +1,4 @@
-vim 
+
 # flask --app teacher_slip.py run --host=0.0.0.0
 import os
 import ldap
@@ -8,7 +8,6 @@ from datetime import date
 import smtplib
 import collections
 
-# Import email_admin.py 
 from email_admin import email_admin
 
 app = Flask(__name__)
@@ -139,7 +138,9 @@ def submit():
     with open(output_csv, "a") as csv_file:
         csv_file.write(",".join(row_data) + "\n")
 
-    #email_admin(",".join(row_data) + "\n")
+    if request.form.get('admin_action_required') != None:
+        print("Emailling Admin")
+        email_admin("First Name, Last Name, Room, Referring Staff Member, Date, Term, Month, Time, Location, Major Offence, Minor Offence, Actions, Week, Comments\n" + ",".join(row_data) + "\n")
 
     style = """
     <style>
