@@ -4,6 +4,7 @@ import httplib2
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+from google.oauth2 import service_account
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
@@ -35,7 +36,6 @@ http = credentials.authorize(http)
 gmail_service = build('gmail', 'v1', http=http)
 
 # create a message to send
-#message = MIMEText("Message")
 message = MIMEMultipart('alternative')
 message['to'] = "bunburyps.wa@gmail.com"
 message['from'] = "bunburyps@bunbury-behavior-form.iam.gserviceaccount.com"
@@ -46,8 +46,6 @@ message.attach(MIMEText(body, 'plain'))
 raw = base64.urlsafe_b64encode(message.as_bytes())
 raw = raw.decode()
 body = {'raw': raw}
-
-body = {'raw': base64.b64encode(message.as_bytes())}
 
 # send it
 try:
