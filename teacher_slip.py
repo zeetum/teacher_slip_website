@@ -1,4 +1,4 @@
-
+vim 
 # flask --app teacher_slip.py run --host=0.0.0.0
 import os
 import ldap
@@ -8,6 +8,9 @@ from datetime import date
 import smtplib
 import collections
 
+# Import email_admin.py 
+from email_admin import email_admin
+
 app = Flask(__name__)
 
 students_csv = '/run/user/1000/gvfs/smb-share:server=e5070s01sv001,share=rmms/Keys/Integris/Outbox/Student.csv'
@@ -15,32 +18,6 @@ output_csv = "/srv/minor_slip/minor_behvaior.csv"
 
 today = date.today().strftime("%d/%m/%Y")
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-def email_admin(TEXT):
-    SERVER = "smtp.office365.com"
-    FROM = "user.name@eduaction.wa.edu.au"
-    TO = ["user.name@eduaction.wa.edu.au"] # must be a list
-
-    SUBJECT = "Hello!"
-    TEXT = "This is a test of emailing through smtp of example.com."
-
-    # Prepare actual message
-    message = """From: %s\r\nTo: %s\r\nSubject: %s\r\n\
-
-    %s
-    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
-
-    # Send the mail
-    print("sending mail")
-    server = smtplib.SMTP(host=SERVER, port=587)
-    print("1")
-    server.starttls()
-    print("3")
-    server.login("user.name@education.wa.edu.au", "Password")
-    print("4")
-    server.sendmail(FROM, TO, message)
-    print("5")
-    server.quit()
 
 @app.route('/submit', methods=['POST'])
 def submit():
